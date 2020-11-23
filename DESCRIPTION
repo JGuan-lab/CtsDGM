@@ -1,0 +1,15 @@
+Package: CtsDGM
+Type: Package
+Title: Cell type specific Disease Gene Module
+Version: 0.1.0
+Author: Jinting Guan
+Maintainer: JGuan <jtguan@xmu.edu.cn>
+Description: CstDGM is an R package for identification cell type 
+    specific gene network and cell type specific gene module.
+License: GPL-3
+Encoding: UTF-8
+Depends: R (>= 3.6.3)
+Imports: 
+    edgeR,
+    igraph
+RoxygenNote: 7.1.1
