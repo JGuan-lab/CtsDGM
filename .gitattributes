@@ -1,1 +1,2 @@
 testdata/exp_count.rda filter=lfs diff=lfs merge=lfs -text
+testdata/exp_count.Rdata filter=lfs diff=lfs merge=lfs -text
