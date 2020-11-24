@@ -19,7 +19,7 @@ Import the package:
 
       library('CtsDGM')  
 Prepare data:
-  Test dataset can be download from https://zenodo.org/record/4287295#.X7yH6GgzaF4 .
+  (download from https://zenodo.org/record/4287295#.X7yH6GgzaF4)
 
       load("exp_count.rda")  #a matrix or data frame of read counts with row and column names, rows denoting genes and column denoting cells.
       load("celltype_annotation.rda")  #a list of cell type annotation of cells. 
