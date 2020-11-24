@@ -14,6 +14,9 @@ Get CtsDGM from github:
 
       install.packages('devtools')    
       devtools::install_github("JGuan-lab/CtsDGM")    
+## 3. Prepare data
+Test dataset can be download from https://zenodo.org/record/4287295#.X7yH6GgzaF4 .
+
 ## 3. Quick start
 Import the package:
 
