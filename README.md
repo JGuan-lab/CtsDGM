@@ -18,28 +18,27 @@ Get CtsDGM from github:
 Import the package:
 
       library('CtsDGM')  
-Prepare data:
-  (download from https://zenodo.org/record/4287295#.X7yH6GgzaF4)
-
-      load("exp_count.rda")  #a matrix or data frame of read counts with row and column names, rows denoting genes and column denoting cells.
-      load("celltype_annotation.rda")  #a list of cell type annotation of cells. 
-      load("ref_network.rda") #a referenced gene-gene interaction network, a two-column matrix, character or numeric, each row defining one edge.
-      load("ASD_genes.rda") #a list of disease-associated genes.
+Prepare data:(Test datasets can be download from https://zenodo.org/record/4287295#.X7yIx2gzaF5)
+  
+      data("exp_count")  #a matrix or data frame of read counts with row and column names, rows denoting genes and column denoting cells.
+      data("celltype_annotation")  #a list of cell type annotation of cells. 
+      data("ref_network") #a referenced gene-gene interaction network, a two-column matrix, character or numeric, each row defining one edge.
+      data("ASD_genes") #a list of disease-associated genes.
         
        
 Run the functions:
 
-      gene_specificity = calc_specificity(datExpr = exp_count,cell_type = celltype_annotation)  
-      gene_score = calc_score(specificity = gene_specificity,cell_type = celltype_annotation)  
-      net_specific = constr_specific_net(net = ref_network,genescore = gene_score) 
-      Cts_DGM = constr_disease_module(Cts_list = net_specific,ASD_genes,padjCutoff = 0.1,returnAllmodules = FALSE,itera = 1000)
+      gene_specificity = calc_specificity(datExpr = exp_count,cell_type = cell_type)  
+      gene_score = calc_score(specificity = gene_specificity,cell_type = cell_type)  
+      net_specific = constr_specific_net(net = refnet,genescore = gene_score) 
+      Cts_DGM = constr_disease_module(Cts_list = net_specific,disease_gene,padjCutoff = 0.1,returnAllmodules = FALSE,itera = 1000)
 ## 4. Step by step
 ### 4.1 Library and load data
       library('CtsDGM')  
-      load("exp_count.rda")  
-      load("celltype_annotation.rda") 
-      load("ref_network.rda") 
-      load("ASD_genes.rda")
+      data("exp_count")  
+      data("celltype_annotation")   
+      data("ref_network")
+      data("ASD_genes")
 
       > exp_count[1:5,1:5]  
             F1S4_160106_001_C01 F1S4_160106_001_G01 F1S4_160106_001_H01 F1S4_160106_002_F01 F1S4_160106_002_H01  
@@ -48,12 +47,12 @@ Run the functions:
      2                       0                 185                  54                  93                 256  
      53947                   0                   0                   1                   0                   0  
      51146                   0                   0                   0                   0                   0  
-      > head(celltype_annotation)  
+      > head(cell_type)  
       [1] "Glutamatergic neuron" "Glutamatergic neuron" "Glutamatergic neuron" "Glutamatergic neuron"  
       [5] "Glutamatergic neuron" "Glutamatergic neuron"  
-      > head(ASD_genes)  
+      > head(disease_gene)  
       [1] 10349 10347  1636    43    60 51412  
-      > head(ref_network)  
+      > head(refnet)  
            V1     V2
       1243  1 253982  
       2241  1   4782  
@@ -64,7 +63,7 @@ Run the functions:
 ### 4.2 Calculate cell type specificity of genes
 `calc_specificity()` calculates specificity for each cell type and each gene. Its inputs include a expression dataset with rows denoting genes and columns denoting cells, and a cell type annotation infomation for cells.
 
-       gene_specificity = calc_specificity(datExpr = exp_count,cell_type = celltype_annotation) 
+       gene_specificity = calc_specificity(datExpr = exp_count,cell_type = cell_type) 
        
        > head(gene_specificity)  
              Glutamatergic neuron GABAergic interneuron    astrocyte Oligodendrocyte precursor cell Oligodendrocyte  
@@ -84,7 +83,7 @@ Run the functions:
 ### 4.3 Calculate cell type score of genes 
 `calc_score()` calculates cell type score for each gene by using the cell type specificity obtained from `calc_specificity()`.
 
-       gene_score = calc_score(specificity = gene_specificity,cell_type = celltype_annotation)
+       gene_score = calc_score(specificity = gene_specificity,cell_type = cell_type)
        
        > head(gene_score)  
             Glutamatergic neuron GABAergic interneuron   astrocyte Oligodendrocyte precursor cell Oligodendrocyte  
@@ -104,7 +103,7 @@ Run the functions:
 ### 4.4 Construct cell type-specific gene network  
 `constr_specific_net` constructs cell type-specific gene network from a given referenced gene interaction network by using the cell type scores obtained from `calc_score()`.
 
-       net_specific = constr_specific_net(net = ref_network,genescore = gene_score)
+       net_specific = constr_specific_net(net = refnet,genescore = gene_score)
        
         > str(net_specific)  
             List of 8  
@@ -118,7 +117,7 @@ Run the functions:
 ### 4.5 Identify cell type-specific disease gene module 
 `constr_disease_module` identifies cell type-specific disease gene module from the cell type-specific gene network obtained from `constr_specific_net` and assesses its significance by permuation tests. Parameter 'returnALLmodules' is set to determine if all candidate cell type-specific disease gene modules should be returned or just return the significant ones.
 
-      Cts_DGM = constr_disease_module(Cts_list = net_specific, disease_gene = ASD_genes,
+      Cts_DGM = constr_disease_module(Cts_list = net_specific, disease_gene = disease_gene,
                                      padjCutoff = 0.1, returnAllmodules = FALSE, itera = 1000)
        
       > str(Cts_DGM)
@@ -167,3 +166,4 @@ Export cell type-specific disease gene module to cytoscape for visualization, ta
     87    158 0.10924185  
     93   2334 0.31703320  
     95 116986 1.57486599  
+
