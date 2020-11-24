@@ -20,10 +20,10 @@ Import the package:
       library('CtsDGM')  
 Prepare data:(Test datasets can be download from https://zenodo.org/record/4287295#.X7yIx2gzaF5)
   
-      data("exp_count")  #a matrix or data frame of read counts with row and column names, rows denoting genes and column denoting cells.
-      data("celltype_annotation")  #a list of cell type annotation of cells. 
-      data("ref_network") #a referenced gene-gene interaction network, a two-column matrix, character or numeric, each row defining one edge.
-      data("ASD_genes") #a list of disease-associated genes.
+      load("exp_count.rda")  #a matrix or data frame of read counts with row and column names, rows denoting genes and column denoting cells.
+      load("celltype_annotation.rda")  #a list of cell type annotation of cells. 
+      load("ref_network.rda") #a referenced gene-gene interaction network, a two-column matrix, character or numeric, each row defining one edge.
+      load("ASD_genes.rda") #a list of disease-associated genes.
         
        
 Run the functions:
@@ -35,10 +35,10 @@ Run the functions:
 ## 4. Step by step
 ### 4.1 Library and load data
       library('CtsDGM')  
-      data("exp_count")  
-      data("celltype_annotation")   
-      data("ref_network")
-      data("ASD_genes")
+      load("exp_count.rda")  
+      load("celltype_annotation.rda")   
+      load("ref_network.rda")
+      load("ASD_genes.rda")
 
       > exp_count[1:5,1:5]  
             F1S4_160106_001_C01 F1S4_160106_001_G01 F1S4_160106_001_H01 F1S4_160106_002_F01 F1S4_160106_002_H01  
