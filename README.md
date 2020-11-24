@@ -18,8 +18,7 @@ Get CtsDGM from github:
 Import the package:
 
       library('CtsDGM')  
-Prepare data: (The datasets analyzed in the paper can be download from:
-               https://zenodo.org/record/4287295#.X7yIx2gzaF5)
+Prepare data: (The datasets analyzed in the paper can be download from: https://zenodo.org/record/4287295#.X7yIx2gzaF5)
   
       load("exp_count.rda")  #a matrix or data frame of read counts with row and column names, rows denoting genes and column denoting cells.
       load("celltype_annotation.rda")  #a list of cell type annotation of cells. 
