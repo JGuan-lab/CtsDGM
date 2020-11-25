@@ -19,7 +19,7 @@ Import the package:
 
       library('CtsDGM')  
 Prepare data: 
-The input datasets used in CtsDGM are available at: https://doi.org/10.5281/zenodo.4288928
+The datasets analyzed in the paper are available at: https://doi.org/10.5281/zenodo.4288928
   
       load("exp_count.rda")  #a matrix or data frame of read counts with row and column names, rows denoting genes and column denoting cells.
       load("celltype_annotation.rda")  #a list of cell type annotation of cells. 
