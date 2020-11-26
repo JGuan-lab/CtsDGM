@@ -38,6 +38,7 @@ Run the functions:
       library('CtsDGM')  
 
 The datasets analyzed in the paper are available at: https://doi.org/10.5281/zenodo.4288928
+      
       load("exp_count.rda")  
       load("celltype_annotation.rda")   
       load("ref_network.rda")
