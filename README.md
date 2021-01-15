@@ -2,7 +2,9 @@
 ## 1. Introduction  
   CtsDGM is an R package for the identification of cell type-specific gene network and cell type-specific disease gene module. 
   For a given gene expression matrix and celltype annotation, it supports the functions of calculating cell type specificity of genes. Then cell type scores of genes are calculated to construct cell type-specific gene network from a referenced gene interaction network. Moreover, by mapping disease genes to cell type-specific gene network, CtsDGM can identify statistically significant cell type-specific disease gene module.
+  
   CtsDGM correspond to the following paper, where further details can be found:
+  
   Guan, J., Lin, Y., Wang, Y. et al. An analytical method for the identification of cell type-specific disease gene modules. J Transl Med 19, 20 (2021). https://doi.org/10.1186/s12967-020-02690-5
   
 ## 2. Installation
